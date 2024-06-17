@@ -1,0 +1,9 @@
+spring:
+  application:
+  name: Fsocial-backend
+  data:
+      mongodb:
+        uri: mongodb+srv://phamngoclansr123:x2HBRUVXnbP3sAbv@fsocial.jofkhul.mongodb.net/Fsocial?retryWrites=true&w=majority
+
+api:
+  prefix: api/v1
