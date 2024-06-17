@@ -15,4 +15,5 @@ public class Major {
     @Id
     private String id;
     private String name;
+
 }

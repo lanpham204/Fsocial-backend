@@ -29,6 +29,7 @@ public class MajorService implements IMajorService {
     @Override
     public Major update(MajorDTO majorDTO, String id) throws DataNotFoundException {
         Major major = majorRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Cannot found major with id: " + id));
+        Major map = modelMapper.map(majorDTO, Major.class);
         modelMapper.map(majorDTO,major);
         return majorRepository.save(major);
     }
