@@ -4,6 +4,9 @@ spring:
   data:
       mongodb:
         uri: mongodb+srv://phamngoclansr123:x2HBRUVXnbP3sAbv@fsocial.jofkhul.mongodb.net/Fsocial?retryWrites=true&w=majority
-
+springdoc:
+  swagger-ui:
+    path=/swagger-ui:
+      html:
 api:
   prefix: api/v1
