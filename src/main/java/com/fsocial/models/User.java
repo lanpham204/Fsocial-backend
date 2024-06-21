@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,16 +19,17 @@ import java.util.Set;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
-    @Id @Pattern(regexp = "[Pp][Ss]\\\\d{5}", message = "The input must match the pattern 'PS' or 'ps' followed by exactly 5 digits\"")
+    @Id
     String id;
-    String fullname;
+    String fullName;
+    @Indexed(unique = true)
     String email;
     String password;
     String avatar;
     String background;
-    boolean is_active=false;
-    boolean non_locked=true;
-    int reward_points;
+    boolean isActive;
+    boolean nonLocked=true;
+    int rewardPoints;
     @DBRef
     Role role;
 }
