@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document("users")
+@Document("notifications")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
