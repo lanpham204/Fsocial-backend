@@ -14,11 +14,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Likes {
+public class Like {
     @Id
     String id;
 
-    String post_id;
+    String postId;
     @DBRef
     User user;
 }
