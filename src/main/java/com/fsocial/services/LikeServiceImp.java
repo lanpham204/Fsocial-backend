@@ -27,12 +27,12 @@ public class LikeServiceImp implements LikeService {
     }
 
     @Override
-    public Like getByPost(String postId) throws DataNotFoundException {
-        return likeRepository.findLikeByPostId(postId);
+    public List<Like> getByPost(String postId) {
+        return likeRepository.findLikeByPost_Id(postId);
     }
 
     @Override
-    public Like getByUser(String userId) throws DataNotFoundException {
+    public List<Like> getByUser(String userId) {
         return likeRepository.findLikeByUser_Id(userId);
     }
 

@@ -1,30 +1,36 @@
 package com.fsocial.dtos;
 
+import com.fsocial.models.Post;
+import com.fsocial.models.User;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class NotificationDTO {
-    String id;
 
-    String postId;
+    @NotBlank(message = "Post can not blank")
+    Post post;
 
-    String senderId;
+    @NotBlank(message = "Sender can not blank")
+    User userSend;
 
-    String receiverId;
+    @NotBlank(message = "Receiver can not blank")
+    List<User> userReceiver;
 
+    @NotBlank(message = "Post can not blank")
     String type;
 
     String description;
 
     String link;
 
-    Date createAt;
+
 }

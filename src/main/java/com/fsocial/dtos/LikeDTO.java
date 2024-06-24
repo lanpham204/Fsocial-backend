@@ -1,6 +1,8 @@
 package com.fsocial.dtos;
 
+import com.fsocial.models.Post;
 import com.fsocial.models.User;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +14,10 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 @NoArgsConstructor
 @Builder
 public class LikeDTO {
-    String id;
 
-    String postId;
+    @NotBlank(message = "Post can not blank")
+    Post post;
 
-    @DBRef
+    @NotBlank(message = "User can not blank")
     User user;
 }
