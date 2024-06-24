@@ -1,19 +1,24 @@
 package com.fsocial.models;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
+import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("majors")
+@Document("likes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Major {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Like {
     @Id
-    private String id;
-    private String name;
+    String id;
 
+    String postId;
+    @DBRef
+    User user;
 }
