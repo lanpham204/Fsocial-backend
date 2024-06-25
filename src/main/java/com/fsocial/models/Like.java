@@ -18,7 +18,9 @@ public class Like {
     @Id
     String id;
 
-    String postId;
+    @DBRef
+    Post post;
+
     @DBRef
     User user;
 }

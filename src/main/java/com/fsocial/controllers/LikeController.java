@@ -35,10 +35,20 @@ public class LikeController {
         }
     }
 
-    @GetMapping("/post-id")
-    public ResponseEntity<?> getlikeByPostId(@RequestParam("post_id") String postId){
+    @GetMapping("/post/post-id")
+    public ResponseEntity<?> getlikeByPostId(@RequestParam("postId") String postId){
         try {
             return ResponseEntity.ok(likeService.getByPost(postId));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/user/user-id")
+    public ResponseEntity<?> getlikeByUserId(@RequestParam("userid") String postId){
+        try {
+            return ResponseEntity.ok(likeService.getByUser(postId));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());

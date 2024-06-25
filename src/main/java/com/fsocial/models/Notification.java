@@ -6,9 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Document("notifications")
 @Data
@@ -19,11 +22,14 @@ public class Notification {
     @Id
     String id;
 
-    String postId;
+    @DBRef
+    Post post;
 
-    String senderId;
+    @DBRef
+    User userSend;
 
-    String receiverId;
+    @DBRef
+    List<User> userReceiver;
 
     String type;
 
@@ -31,6 +37,6 @@ public class Notification {
 
     String link;
 
-    Date createAt;
+    LocalDateTime createAt = LocalDateTime.now();
 
 }
