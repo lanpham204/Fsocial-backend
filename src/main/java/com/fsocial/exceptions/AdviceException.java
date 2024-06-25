@@ -23,4 +23,9 @@ public class AdviceException {
     public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         return  ResponseEntity.badRequest().body(e.getFieldError().getDefaultMessage());
     }
+    @ExceptionHandler(CodeInvalidException.class)
+    public ResponseEntity<String> handleCodeInvalidException(CodeInvalidException e) {
+        return  ResponseEntity.badRequest().body(e.getMessage());
+    }
+
 }
