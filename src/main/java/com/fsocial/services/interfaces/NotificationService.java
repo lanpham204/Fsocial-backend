@@ -12,4 +12,5 @@ public interface NotificationService {
     NotificationResponse create(NotificationDTO notificationsDTO) throws DataNotFoundException;
     NotificationResponse update(NotificationDTO notificationsDTO, String id) throws DataNotFoundException ;
     void  delete(String id) throws DataNotFoundException;
+
 }

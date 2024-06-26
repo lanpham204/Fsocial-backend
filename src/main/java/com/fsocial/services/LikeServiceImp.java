@@ -78,4 +78,5 @@ public class LikeServiceImp implements LikeService {
         Like like = likeRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Cannot found like with id: "+id));
         likeRepository.delete(like);
     }
+
 }

@@ -15,4 +15,5 @@ public interface LikeService {
     LikeResponse create(LikeDTO likesDTO) throws DataNotFoundException;
     LikeResponse update(LikeDTO likesDTO, String id) throws DataNotFoundException;
     void delete(String id) throws DataNotFoundException;
+
 }

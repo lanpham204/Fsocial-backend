@@ -75,4 +75,5 @@ public class NotificationServiceImp implements NotificationService {
         Notification notification = notificationsRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Cannot found notification with id: "+id));
         notificationsRepository.delete(notification);
     }
+
 }

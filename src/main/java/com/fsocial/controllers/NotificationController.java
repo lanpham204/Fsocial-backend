@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("${api.prefix}/notifications")
 @RequiredArgsConstructor
-public class NotidicationController {
+public class NotificationController {
   private final NotificationService notificationService;
 
   @GetMapping
@@ -61,5 +61,6 @@ public class NotidicationController {
       e.printStackTrace();
       return ResponseEntity.badRequest().body(e.getMessage());
     }
+
   }
 }
