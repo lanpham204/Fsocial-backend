@@ -16,8 +16,8 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 public class LikeDTO {
 
     @NotBlank(message = "Post can not blank")
-    String postId;
+    Post post;
 
     @NotBlank(message = "User can not blank")
-    String userId;
+    User user;
 }
