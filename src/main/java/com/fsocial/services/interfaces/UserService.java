@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public interface IUserService {
+public interface UserService {
   UserResponse uploadImage(String id, MultipartFile file) throws DataNotFoundException, IOException;
 
   UserResponse uploadBackgroundImage(String id, MultipartFile file) throws DataNotFoundException, IOException;

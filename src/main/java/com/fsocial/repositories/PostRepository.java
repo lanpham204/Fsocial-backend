@@ -1,4 +1,4 @@
-package com.fsocial.respositories;
+package com.fsocial.repositories;
 
 import com.fsocial.models.Post;
 import org.springframework.data.domain.Page;

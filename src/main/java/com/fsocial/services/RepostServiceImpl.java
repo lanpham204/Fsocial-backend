@@ -2,12 +2,10 @@ package com.fsocial.services;
 
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Report;
-import com.fsocial.respositories.ReportRepository;
+import com.fsocial.repositories.ReportRepository;
 import com.fsocial.services.interfaces.ReportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

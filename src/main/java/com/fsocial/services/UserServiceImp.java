@@ -8,9 +8,8 @@ import com.fsocial.exceptions.ExistingException;
 import com.fsocial.models.Report;
 import com.fsocial.models.User;
 import com.fsocial.responses.UserResponse;
-import com.fsocial.respositories.RoleRepository;
-import com.fsocial.respositories.UserRepository;
-import com.fsocial.services.interfaces.IUserService;
+import com.fsocial.repositories.RoleRepository;
+import com.fsocial.repositories.UserRepository;
 import com.fsocial.services.interfaces.MailerService;
 import com.fsocial.services.interfaces.ReportService;
 import com.fsocial.utils.CloudinaryUtil;
@@ -27,7 +26,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements IUserService {
+public class UserServiceImp implements com.fsocial.services.interfaces.UserService {
   private final UserRepository userRepository;
   private final ModelMapper modelMapper;
   private final RoleRepository roleRepository;

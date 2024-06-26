@@ -5,7 +5,7 @@ import com.fsocial.dtos.UserUpdateInfoDto;
 import com.fsocial.dtos.ValidatorEmail;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.responses.UserResponse;
-import com.fsocial.services.interfaces.IUserService;
+import com.fsocial.services.interfaces.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("${api.prefix}/users")
 public class UserController {
-  private final IUserService userService;
+  private final UserService userService;
 
   @GetMapping
   public ResponseEntity<List<UserResponse>> getUsers() {
