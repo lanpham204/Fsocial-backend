@@ -15,6 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FollowDTO {
-    User user;
-    User follower;
+    String user;
+    String follower;
 }

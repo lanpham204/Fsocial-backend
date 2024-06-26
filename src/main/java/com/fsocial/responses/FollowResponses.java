@@ -13,10 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FollowResponses {
-    @Id
     String id;
-    @DBRef
-    User user;
-    @DBRef
-    User followId;
+    String userId;
+    String followId;
 }

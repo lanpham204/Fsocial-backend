@@ -19,7 +19,6 @@ public class CommentResponses {
     String comment;
     String image;
     LocalDateTime commentAt;
-    User userId;
-    Post postId;
-
+    String userId;
+    String postId;
 }

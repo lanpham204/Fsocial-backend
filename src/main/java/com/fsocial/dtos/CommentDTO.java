@@ -16,6 +16,6 @@ public class CommentDTO {
     String comment;
     String image;
 
-    User user;
-    Post post;
+    String user;
+    String post;
 }

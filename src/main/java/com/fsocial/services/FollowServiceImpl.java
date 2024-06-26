@@ -3,7 +3,10 @@ package com.fsocial.services;
 import com.fsocial.dtos.FollowDTO;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Follow;
+import com.fsocial.models.Major;
+import com.fsocial.models.Post;
 import com.fsocial.models.User;
+import com.fsocial.responses.FollowResponses;
 import com.fsocial.respositories.UserRepository;
 import com.fsocial.respositories.FollowRepository;
 import com.fsocial.services.interfaces.FollowService;
@@ -22,29 +25,40 @@ public class FollowServiceImpl implements FollowService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<Follow> getAll() {
-        return followRepository.findAll();
+    public List<FollowResponses> getAll() {
+        List<Follow> follows = followRepository.findAll();
+        return follows.stream().map(follow -> modelMapper.map(follow, FollowResponses.class)).toList();
     }
 
     @Override
-    public Follow getById(String id) throws DataNotFoundException {
-        return followRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Cannot find follow with id: " + id));
+    public FollowResponses getById(String id) throws DataNotFoundException {
+        Follow follow = followRepository.findByUser_Id(id);
+        return modelMapper.map(follow, FollowResponses.class);
     }
 
     @Override
-    public Follow getFollowersByUserId(String userId) throws DataNotFoundException {
-        return followRepository.findByUserId(userId);
+    public FollowResponses getFollowersByUserId(String userId) throws DataNotFoundException {
+        User user = userRepository.findById(userId).orElseThrow(() -> new DataNotFoundException("Cannot found user with id: " + userId));
+        return modelMapper.map(followRepository.findByUser_Id(userId), FollowResponses.class);
     }
 
     @Override
-    public List<Follow> getFollowingsByUserId(String followerId) throws DataNotFoundException {
-        return followRepository.findByFollowerId(followerId);
+    public List<FollowResponses> getFollowingsByUserId(String followerId) throws DataNotFoundException {
+        Follow follows = followRepository.findByUser_Id(followerId);
+        return followRepository.findByFollower_Id(followerId).stream().map(follow -> modelMapper.map(follow,FollowResponses.class)).toList();
     }
 
     @Override
-    public Follow create(FollowDTO followDTO) throws DataNotFoundException {
-        Follow follow = modelMapper.map(followDTO, Follow.class);
-        return followRepository.save(follow);
+    public FollowResponses create(FollowDTO followDTO) throws DataNotFoundException {
+        User user = userRepository.findById(followDTO.getUser()).orElseThrow(
+                () -> new DataNotFoundException("Cannot found user with id: " + followDTO.getUser()));
+        User follower = userRepository.findById(followDTO.getFollower()).orElseThrow(
+                () -> new DataNotFoundException("Cannot found user with id: " + followDTO.getFollower()));
+        Follow follow = Follow.builder()
+                .user(user)
+                .follower(follower)
+                .build();
+        return modelMapper.map(followRepository.save(follow), FollowResponses.class);
     }
 
     @Override

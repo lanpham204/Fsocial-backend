@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FollowRepository extends MongoRepository<Follow, String> {
     //find user who following
-    Follow findByUserId(String userId);
+    Follow findByUser_Id(String userId);
     //find user who follower
-    List<Follow> findByFollowerId(String followerId);
+    List<Follow> findByFollower_Id(String followerId);
 }
