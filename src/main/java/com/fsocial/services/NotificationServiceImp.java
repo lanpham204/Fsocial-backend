@@ -3,7 +3,7 @@ package com.fsocial.services;
 import com.fsocial.dtos.NotificationDTO;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Notification;
-import com.fsocial.repositories.NotificationRepository;
+import com.fsocial.respositories.NotificationRepository;
 import com.fsocial.services.interfaces.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

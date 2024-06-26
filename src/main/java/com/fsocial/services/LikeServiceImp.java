@@ -3,7 +3,7 @@ package com.fsocial.services;
 import com.fsocial.dtos.LikeDTO;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Like;
-import com.fsocial.repositories.LikeRepository;
+import com.fsocial.respositories.LikeRepository;
 import com.fsocial.services.interfaces.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
