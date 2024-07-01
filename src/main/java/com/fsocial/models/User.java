@@ -19,17 +19,18 @@ import java.util.Set;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
-    @Id
-    String id;
-    String fullName;
-    @Indexed(unique = true)
-    String email;
-    String password;
-    String avatar;
-    String background;
-    boolean isActive;
-    boolean nonLocked=true;
-    int rewardPoints;
-    @DBRef
-    Role role;
+  @Id
+  String id;
+  String fullName;
+  @Indexed(unique = true)
+  String email;
+  String password;
+  String avatar;
+  String background;
+  boolean isActive;
+  boolean nonLocked = true;
+  int rewardPoints;
+  String addressWallet;
+  @DBRef
+  Role role;
 }

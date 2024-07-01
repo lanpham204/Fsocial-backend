@@ -2,15 +2,14 @@ package com.fsocial.services;
 
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Role;
-import com.fsocial.respositories.RoleRepository;
-import com.fsocial.services.interfaces.IRoleService;
+import com.fsocial.repositories.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 @RequiredArgsConstructor
-public class RoleService implements IRoleService {
+public class RoleServiceImp implements com.fsocial.services.interfaces.RoleService {
     private final RoleRepository roleRepository;
     @Override
     public Role create(Role role) {

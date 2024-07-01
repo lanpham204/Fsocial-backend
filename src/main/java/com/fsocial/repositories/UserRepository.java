@@ -1,4 +1,4 @@
-package com.fsocial.respositories;
+package com.fsocial.repositories;
 
 import com.fsocial.models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
