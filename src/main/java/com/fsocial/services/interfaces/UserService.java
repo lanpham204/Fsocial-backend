@@ -16,6 +16,7 @@ public interface UserService {
   UserResponse uploadBackgroundImage(String id, MultipartFile file) throws DataNotFoundException, IOException;
 
   UserResponse create(UserDto userDto) throws DataNotFoundException;
+  String login(String email, String password) throws DataNotFoundException;
 
   UserResponse update(String id, UserUpdateInfoDto userDto) throws DataNotFoundException;
 

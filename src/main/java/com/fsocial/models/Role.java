@@ -17,4 +17,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Role {
     @Id
     String name;
+    public static String ADMIN = "ADMIN";
+    public static String USER = "USER";
 }

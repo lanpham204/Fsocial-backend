@@ -1,6 +1,7 @@
 package com.fsocial.controllers;
 
 import com.fsocial.dtos.UserDto;
+import com.fsocial.dtos.UserLoginDto;
 import com.fsocial.dtos.UserUpdateInfoDto;
 import com.fsocial.dtos.ValidatorEmail;
 import com.fsocial.exceptions.DataNotFoundException;
@@ -28,9 +29,13 @@ public class UserController {
     return ResponseEntity.ok(userService.findAll());
   }
 
-  @PostMapping
+  @PostMapping("/register")
   public ResponseEntity<UserResponse> createUser(@Validated @RequestBody UserDto userDto) throws DataNotFoundException {
     return ResponseEntity.ok(userService.create(userDto));
+  }
+  @PostMapping("/login")
+  public ResponseEntity<?> login(@Validated @RequestBody UserLoginDto userLoginDto) throws DataNotFoundException {
+    return ResponseEntity.ok(userService.login(userLoginDto.getEmail(), userLoginDto.getPassword()));
   }
 
   @PutMapping("{id}")
