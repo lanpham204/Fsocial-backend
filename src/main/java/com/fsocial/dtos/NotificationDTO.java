@@ -1,7 +1,6 @@
 package com.fsocial.dtos;
 
 import com.fsocial.models.Post;
-import com.fsocial.models.TypeNotification;
 import com.fsocial.models.User;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -18,16 +17,16 @@ import java.util.List;
 public class NotificationDTO {
 
     @NotBlank(message = "Post can not blank")
-    String postId;
+    Post post;
 
     @NotBlank(message = "Sender can not blank")
-    String userSendId;
+    User userSend;
 
     @NotBlank(message = "Receiver can not blank")
-    List<UserIdDTO> userReceiver;
+    List<User> userReceiver;
 
     @NotBlank(message = "Post can not blank")
-    TypeNotification type;
+    String type;
 
     String description;
 

@@ -5,7 +5,7 @@ import com.fsocial.models.Role;
 
 import java.util.List;
 
-public interface IRoleService {
+public interface RoleService {
     Role create (Role role);
     List<Role> getAll();
     void Delete(String id);

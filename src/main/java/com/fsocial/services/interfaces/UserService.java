@@ -8,14 +8,16 @@ import com.fsocial.responses.UserResponse;
 import java.io.IOException;
 import java.util.List;
 
+import com.fsocial.responses.UserTokenResponse;
 import org.springframework.web.multipart.MultipartFile;
 
-public interface IUserService {
+public interface UserService {
   UserResponse uploadImage(String id, MultipartFile file) throws DataNotFoundException, IOException;
 
   UserResponse uploadBackgroundImage(String id, MultipartFile file) throws DataNotFoundException, IOException;
 
   UserResponse create(UserDto userDto) throws DataNotFoundException;
+  UserTokenResponse login(String email, String password) throws DataNotFoundException;
 
   UserResponse update(String id, UserUpdateInfoDto userDto) throws DataNotFoundException;
 

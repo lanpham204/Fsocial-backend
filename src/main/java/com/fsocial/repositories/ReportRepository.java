@@ -1,4 +1,4 @@
-package com.fsocial.respositories;
+package com.fsocial.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
