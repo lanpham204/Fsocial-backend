@@ -27,6 +27,3 @@ springdoc:
       html:
 api:
   prefix: api/v1
-jwt:
-  expiration: 2592000
-  secretKey: 7d3Qrb/fKptF81DrAevuuvPTwN++BEWzg8mI+PPkkdw=

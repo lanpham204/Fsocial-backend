@@ -58,8 +58,7 @@ public class LikeController {
     @PostMapping()
     public ResponseEntity<?> createLike(@RequestBody LikeDTO likeDTO){
         try {
-            Like createdLike = likeService.create(likeDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdLike);
+            return ResponseEntity.status(HttpStatus.CREATED).body(likeService.create(likeDTO));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -69,8 +68,7 @@ public class LikeController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateLike(@RequestBody LikeDTO likeDTO, @PathVariable String id){
         try {
-            Like updateLike = likeService.update(likeDTO,id);
-            return ResponseEntity.ok(updateLike);
+            return ResponseEntity.ok(likeService.update(likeDTO,id));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());

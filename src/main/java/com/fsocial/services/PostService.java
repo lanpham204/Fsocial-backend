@@ -5,7 +5,8 @@ import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.*;
 import com.fsocial.responses.PostListResponse;
 import com.fsocial.responses.PostResponse;
-import com.fsocial.repositories.*;
+import com.fsocial.respositories.*;
+import com.fsocial.services.interfaces.IPostService;
 import com.fsocial.utils.CloudinaryUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,7 +23,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class PostServiceImp implements com.fsocial.services.interfaces.PostService {
+public class PostService implements IPostService {
     private final ModelMapper modelMapper;
     private final MajorRepository majorRepository;
     private final UserRepository userRepository;

@@ -10,13 +10,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 @Document("users")
@@ -24,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User implements UserDetails {
+public class User {
   @Id
   String id;
   String fullName;
@@ -39,16 +33,4 @@ public class User implements UserDetails {
   String addressWallet;
   @DBRef
   Role role;
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-    authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName().toUpperCase()));
-    return authorities;
-  }
-
-  @Override
-  public String getUsername() {
-    return email;
-  }
 }

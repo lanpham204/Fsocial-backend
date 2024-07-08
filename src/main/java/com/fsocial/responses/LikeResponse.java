@@ -16,5 +16,4 @@ public class LikeResponse {
     String  postId;
 
     String userId;
-
 }
