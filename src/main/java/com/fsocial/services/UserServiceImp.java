@@ -10,6 +10,7 @@ import com.fsocial.models.User;
 import com.fsocial.responses.UserResponse;
 import com.fsocial.repositories.RoleRepository;
 import com.fsocial.repositories.UserRepository;
+import com.fsocial.responses.UserTokenResponse;
 import com.fsocial.services.interfaces.MailerService;
 import com.fsocial.services.interfaces.ReportService;
 import com.fsocial.services.interfaces.UserService;
@@ -76,7 +77,7 @@ public class UserServiceImp implements UserService {
   }
 
   @Override
-  public String login(String email, String password) throws DataNotFoundException {
+  public UserTokenResponse login(String email, String password) throws DataNotFoundException {
     User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new DataNotFoundException("Invalid email or password"));
     if(!passwordEncoder.matches(password, user.getPassword())) {
@@ -90,7 +91,9 @@ public class UserServiceImp implements UserService {
     }
     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
     authenticationManager.authenticate(authenticationToken);
-    return jwtTokenUtil.generateToken(user);
+    return UserTokenResponse.builder()
+            .token(jwtTokenUtil.generateToken(user))
+            .build();
   }
 
   @Override
