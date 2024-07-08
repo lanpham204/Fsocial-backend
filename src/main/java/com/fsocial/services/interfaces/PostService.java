@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import java.io.IOException;
 import java.util.List;
 
-public interface IPostService {
+public interface PostService {
   PostResponse create(PostDTO postDTO) throws DataNotFoundException, IOException;
 
   PostListResponse getPosts(Pageable pageable);

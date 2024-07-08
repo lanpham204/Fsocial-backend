@@ -1,14 +1,14 @@
-package com.fsocial.dtos;
+package com.fsocial.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
-public class UserIdDTO {
-    String id;
+public class UserTokenResponse {
+    private String token;
 }

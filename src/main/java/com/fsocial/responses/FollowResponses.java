@@ -1,26 +1,19 @@
-package com.fsocial.models;
+package com.fsocial.responses;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fsocial.models.User;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("likes")
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Like {
-    @Id
+public class FollowResponses {
     String id;
-
-    @DBRef
-    Post post;
-
-    @DBRef
-    User user;
+    String userId;
+    String followId;
 }

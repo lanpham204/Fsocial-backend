@@ -1,26 +1,26 @@
 package com.fsocial.models;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("likes")
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class Like {
+@Document("chat_rooms")
+@Builder
+public class ChatRoom {
     @Id
-    String id;
-
+    private String id;
     @DBRef
-    Post post;
-
+    private User sender;
     @DBRef
-    User user;
+    private User receiver;
+    private List<Message> messages;
 }

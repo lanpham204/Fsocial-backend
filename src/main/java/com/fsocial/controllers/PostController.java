@@ -4,7 +4,7 @@ import com.fsocial.dtos.PostDTO;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.responses.PostListResponse;
 import com.fsocial.responses.PostResponse;
-import com.fsocial.services.interfaces.IPostService;
+import com.fsocial.services.interfaces.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("${api.prefix}/posts")
 @RequiredArgsConstructor
 public class PostController {
-  private final IPostService postService;
+  private final PostService postService;
 
   @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<PostResponse> createPost(@Validated @ModelAttribute("postDTO") PostDTO postDTO,

@@ -3,8 +3,7 @@ package com.fsocial.services;
 import com.fsocial.dtos.MajorDTO;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Major;
-import com.fsocial.respositories.MajorRepository;
-import com.fsocial.services.interfaces.IMajorService;
+import com.fsocial.repositories.MajorRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MajorService implements IMajorService {
+public class MajorServiceImp implements com.fsocial.services.interfaces.MajorService {
   private final ModelMapper modelMapper;
   private final MajorRepository majorRepository;
 

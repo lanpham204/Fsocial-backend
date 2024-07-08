@@ -1,11 +1,12 @@
 package com.fsocial.controllers;
 
 import com.fsocial.dtos.UserDto;
+import com.fsocial.dtos.UserLoginDto;
 import com.fsocial.dtos.UserUpdateInfoDto;
 import com.fsocial.dtos.ValidatorEmail;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.responses.UserResponse;
-import com.fsocial.services.interfaces.IUserService;
+import com.fsocial.services.interfaces.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,16 +22,20 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("${api.prefix}/users")
 public class UserController {
-  private final IUserService userService;
+  private final UserService userService;
 
   @GetMapping
   public ResponseEntity<List<UserResponse>> getUsers() {
     return ResponseEntity.ok(userService.findAll());
   }
 
-  @PostMapping
+  @PostMapping("/register")
   public ResponseEntity<UserResponse> createUser(@Validated @RequestBody UserDto userDto) throws DataNotFoundException {
     return ResponseEntity.ok(userService.create(userDto));
+  }
+  @PostMapping("/login")
+  public ResponseEntity<?> login(@Validated @RequestBody UserLoginDto userLoginDto) throws DataNotFoundException {
+    return ResponseEntity.ok(userService.login(userLoginDto.getEmail(), userLoginDto.getPassword()));
   }
 
   @PutMapping("{id}")
