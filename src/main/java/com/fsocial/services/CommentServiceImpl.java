@@ -3,26 +3,20 @@ package com.fsocial.services;
 import com.fsocial.dtos.CommentDTO;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Comment;
-import com.fsocial.models.Image;
 import com.fsocial.models.Post;
 import com.fsocial.models.User;
 import com.fsocial.responses.CommentResponses;
-import com.fsocial.respositories.CommentRepository;
+import com.fsocial.repositories.CommentRepository;
 import com.fsocial.respositories.PostRepository;
 import com.fsocial.respositories.UserRepository;
 import com.fsocial.services.interfaces.CommentService;
 import com.fsocial.utils.CloudinaryUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
