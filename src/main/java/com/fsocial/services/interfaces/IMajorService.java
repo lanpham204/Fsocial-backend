@@ -6,7 +6,7 @@ import com.fsocial.models.Major;
 
 import java.util.List;
 
-public interface MajorService {
+public interface IMajorService {
   Major create(MajorDTO majorDTO);
 
   List<Major> getAll();
