@@ -17,13 +17,13 @@ import java.util.List;
 public class NotificationDTO {
 
     @NotBlank(message = "Post can not blank")
-    Post post;
+    String postId;
 
     @NotBlank(message = "Sender can not blank")
-    User userSend;
+    String userSendId;
 
     @NotBlank(message = "Receiver can not blank")
-    List<User> userReceiver;
+    List<String> userReceiver;
 
     @NotBlank(message = "Post can not blank")
     String type;

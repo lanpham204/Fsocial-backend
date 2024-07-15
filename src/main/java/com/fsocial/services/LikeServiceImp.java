@@ -3,7 +3,12 @@ package com.fsocial.services;
 import com.fsocial.dtos.LikeDTO;
 import com.fsocial.exceptions.DataNotFoundException;
 import com.fsocial.models.Like;
+import com.fsocial.models.Post;
+import com.fsocial.models.User;
 import com.fsocial.repositories.LikeRepository;
+import com.fsocial.repositories.PostRepository;
+import com.fsocial.repositories.UserRepository;
+import com.fsocial.responses.LikeResponse;
 import com.fsocial.services.interfaces.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,36 +21,54 @@ import java.util.List;
 public class LikeServiceImp implements LikeService {
     private final LikeRepository likeRepository;
     private final ModelMapper modelMapper;
+    private final PostRepository postRepository;
+    private final UserRepository userRepository;
     @Override
-    public List<Like> getAll() {
-        return likeRepository.findAll();
+    public List<LikeResponse> getAll() {
+        List<Like> likes = likeRepository.findAll();
+        return likes.stream().map(like ->  modelMapper.map(like,LikeResponse.class)).toList();
     }
 
     @Override
-    public Like getById(String id) throws DataNotFoundException {
-        return likeRepository.findById(id).orElseThrow(()->new DataNotFoundException("Cannot found like with id: "+id));
+    public LikeResponse getById(String id) throws DataNotFoundException {
+        Like like = likeRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Cannot found Like by id: "+id));
+        return modelMapper.map(like,LikeResponse.class);
     }
 
     @Override
-    public List<Like> getByPost(String postId) {
-        return likeRepository.findLikeByPost_Id(postId);
+    public List<LikeResponse> getByPost(String postId) throws DataNotFoundException {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new DataNotFoundException("Cannot found Like by post id: "+postId));
+        List<Like> likes = likeRepository.findLikeByPost_Id(postId);
+        return likes.stream().map(like -> modelMapper.map(like,LikeResponse.class)).toList();
     }
 
     @Override
-    public List<Like> getByUser(String userId) {
-        return likeRepository.findLikeByUser_Id(userId);
+    public List<LikeResponse> getByUser(String userId) throws DataNotFoundException{
+        User user= userRepository.findById(userId).orElseThrow(() ->new DataNotFoundException("Cannot found Like by user id: "+userId));
+        List<Like> likes = likeRepository.findLikeByUser_Id(userId);
+        return likes.stream().map(like -> modelMapper.map(like,LikeResponse.class)).toList();
     }
 
     @Override
-    public Like create(LikeDTO likesDTO) {
-        return likeRepository.save(modelMapper.map(likesDTO,Like.class));
+    public LikeResponse create(LikeDTO likesDTO) throws DataNotFoundException{
+        User user = userRepository.findById(likesDTO.getUserId()).orElseThrow(() -> new DataNotFoundException("Cannot found Like by user id: "+ likesDTO.getUserId()));
+        Post post = postRepository.findById(likesDTO.getPostId()).orElseThrow(() -> new DataNotFoundException("Cannot found Like by post id: "+likesDTO.getPostId()));
+        Like like = Like.builder()
+                .user(user)
+                .post(post)
+                .build();
+        return modelMapper.map(likeRepository.save(like),LikeResponse.class);
     }
 
     @Override
-    public Like update(LikeDTO likesDTO, String id) throws DataNotFoundException {
+    public LikeResponse update(LikeDTO likesDTO, String id) throws DataNotFoundException {
+        User user = userRepository.findById(likesDTO.getUserId()).orElseThrow(() -> new DataNotFoundException("Cannot found Like by user id: "+ likesDTO.getUserId()));
+        Post post = postRepository.findById(likesDTO.getPostId()).orElseThrow(() -> new DataNotFoundException("Cannot found Like by post id: "+likesDTO.getPostId()));
         Like like = likeRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Cannot found like with id: "+id));
-        modelMapper.map(likesDTO,like);
-        return likeRepository.save(like);
+        like.setUser(user);
+        like.setPost(post);
+        return modelMapper.map(likeRepository.save(like),LikeResponse.class);
+
     }
 
     @Override
