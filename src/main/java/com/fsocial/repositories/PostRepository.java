@@ -10,4 +10,6 @@ import java.util.List;
 public interface PostRepository extends MongoRepository<Post, String> {
     List<Post> findByUserId(String userId);
     Page<Post> findByMajorId(String majorId, Pageable pageable);
+    Page<Post> findByActiveIsFalse(Pageable pageable);
+    Page<Post> findByActiveIsTrue(Pageable pageable);
 }

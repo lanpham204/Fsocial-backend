@@ -30,6 +30,6 @@ public class Post {
     private LocalDateTime updatedAt;
     @DBRef
     private Major major;
-    private boolean isActive;
+    private boolean active;
 
 }

@@ -13,6 +13,8 @@ public interface PostService {
   PostResponse create(PostDTO postDTO) throws DataNotFoundException, IOException;
 
   PostListResponse getPosts(Pageable pageable);
+  PostListResponse getPostsByActiveTrue(Pageable pageable);
+  PostListResponse getPostsByActiveFalse(Pageable pageable);
 
   PostResponse update(PostDTO postDTO, String id) throws DataNotFoundException;
 

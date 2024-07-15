@@ -56,7 +56,7 @@ public class PostServiceImp implements com.fsocial.services.interfaces.PostServi
         Post post = Post.builder()
                 .user(user)
                 .content(postDTO.getContent())
-                .isActive(postDTO.isActive())
+                .active(postDTO.isActive())
                 .files(files)
                 .images(images)
                 .major(major)
@@ -75,6 +75,22 @@ public class PostServiceImp implements com.fsocial.services.interfaces.PostServi
     }
 
     @Override
+    public PostListResponse getPostsByActiveTrue(Pageable pageable) {
+        Page<Post> postPage = postRepository.findByActiveIsTrue(pageable);
+        return PostListResponse.builder()
+                .posts(postPage.getContent().stream().map(post -> modelMapper.map(post, PostResponse.class)).toList())
+                .totalPage(postPage.getTotalPages()).build();
+    }
+
+    @Override
+    public PostListResponse getPostsByActiveFalse(Pageable pageable) {
+        Page<Post> postPage = postRepository.findByActiveIsFalse(pageable);
+        return PostListResponse.builder()
+                .posts(postPage.getContent().stream().map(post -> modelMapper.map(post, PostResponse.class)).toList())
+                .totalPage(postPage.getTotalPages()).build();
+    }
+
+    @Override
     public PostResponse update(PostDTO postDTO, String id) throws DataNotFoundException {
         User user = userRepository.findById(postDTO.getUserId()).orElseThrow(
                 () -> new DataNotFoundException("Cannot found user with id: " + postDTO.getUserId()));
@@ -85,7 +101,7 @@ public class PostServiceImp implements com.fsocial.services.interfaces.PostServi
         post = Post.builder()
                 .user(user)
                 .content(postDTO.getContent())
-                .isActive(postDTO.isActive())
+                .active(postDTO.isActive())
                 .files(post.getFiles())
                 .images(post.getImages())
                 .major(major)

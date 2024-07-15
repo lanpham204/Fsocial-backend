@@ -49,7 +49,22 @@ public class PostController {
     PostListResponse posts = postService.getPosts(pageRequest);
     return ResponseEntity.ok(posts);
   }
-
+  @GetMapping("/active")
+  public ResponseEntity<?> getPostsByActiveTrue(
+          @RequestParam(required = false, defaultValue = "0") int page,
+          @RequestParam(required = false, defaultValue = "10") int size) {
+    PageRequest pageRequest = PageRequest.of(page, size);
+    PostListResponse posts = postService.getPostsByActiveTrue(pageRequest);
+    return ResponseEntity.ok(posts);
+  }
+  @GetMapping("/no-active")
+  public ResponseEntity<?> getPostsByActiveFalse(
+          @RequestParam(required = false, defaultValue = "0") int page,
+          @RequestParam(required = false, defaultValue = "10") int size) {
+    PageRequest pageRequest = PageRequest.of(page, size);
+    PostListResponse posts = postService.getPostsByActiveFalse(pageRequest);
+    return ResponseEntity.ok(posts);
+  }
   @GetMapping("/{id}")
   public ResponseEntity<?> getPostById(@PathVariable String id) throws DataNotFoundException {
     PostResponse postResponse = postService.getById(id);

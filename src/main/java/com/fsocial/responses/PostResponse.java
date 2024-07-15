@@ -28,5 +28,5 @@ public class PostResponse {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String majorId;
-    private boolean isActive;
+    private boolean active;
 }
