@@ -71,8 +71,27 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentResponses update(String id, CommentDTO commentDTO) throws DataNotFoundException {
-    return null;
+        Comment existingComment = commentRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException("Cannot find comment with id: " + id));
+
+        // Nếu cần cập nhật các thuộc tính khác của comment
+        if (commentDTO.getComment() != null) {
+            existingComment.setComment(commentDTO.getComment());
+        }
+
+        if (commentDTO.getImage() != null) {
+            existingComment.setImage(commentDTO.getImage());
+        }
+
+        existingComment.setCommentAt(LocalDateTime.now()); // Cập nhật thời gian comment
+
+        // Lưu lại bình luận đã cập nhật vào cơ sở dữ liệu
+        Comment updatedComment = commentRepository.save(existingComment);
+
+        // Trả về đối tượng CommentResponses đã được cập nhật
+        return modelMapper.map(updatedComment, CommentResponses.class);
     }
+
 
     @Override
     public void delete(String id) throws DataNotFoundException {
